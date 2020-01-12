@@ -1,0 +1,19 @@
+{
+  "name": "surway",
+  "version": "1.0.0",
+  "description": "This is a feedback website where the corporations can use to collect feedback",
+  "main": "index.js",
+  "engines": {
+    "node": "13.3.0",
+    "npm": "6.13.1"
+  },
+  "scripts": {
+    "start": "node Servers/index.js",
+    "dev": "nodemon Servers/index.js"
+  },
+  "author": "Vishal Reddy Kallem",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
