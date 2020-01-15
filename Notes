@@ -68,3 +68,11 @@ Incoming HTTP request -> Port on Machine -> Node -> Express -> Route Handling ->
     Queries in Mongo DB:
         -> findOne(record) - Checks whether the user record already exists in the database.
         -> Query returns a promise.
+
+
+8) Cookies:
+    -> Server receives HTTP request, cookie-session extracts the cookie data.
+    -> Passport pulls user id out of cookie data.
+    -> Convert the user id to the User model instance.
+    -> It is added to the request object as req.user and is sent to the route handler to handle this request.
+    -> We create a new route handler to validate req.user in the request.
