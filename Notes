@@ -76,3 +76,5 @@ Incoming HTTP request -> Port on Machine -> Node -> Express -> Route Handling ->
     -> Convert the user id to the User model instance.
     -> It is added to the request object as req.user and is sent to the route handler to handle this request.
     -> We create a new route handler to validate req.user in the request.
+
+            request from browser -> app -> middleware #1 -> middleware #2 -> route handler -> response
