@@ -1,10 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const keys = require("../config/keys");
+require("../models/user");
 require("../services/passport");
-require("../models/User");
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const app = express();
 
