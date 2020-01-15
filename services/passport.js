@@ -15,8 +15,11 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleID: profile["id"] }).then(existingUser => {
         if (existingUser) {
+          done(null, existingUser);
         } else {
-          new User({ googleID: profile["id"] }).save();
+          new User({ googleID: profile["id"] })
+            .save()
+            .then(user => done(null, user));
         }
       });
       console.log(`Created a user entry with id: ${profile["id"]}`);
