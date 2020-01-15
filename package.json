@@ -8,15 +8,17 @@
     "npm": "6.13.1"
   },
   "scripts": {
-    "start": "node Servers/index.js",
-    "dev": "nodemon Servers/index.js"
+    "start": "node servers/index.js",
+    "dev": "nodemon servers/index.js"
   },
   "author": "Vishal Reddy Kallem",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^5.8.7",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "prettier": "^1.19.1"
   }
 }

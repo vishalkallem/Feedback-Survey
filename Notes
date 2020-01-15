@@ -1,0 +1,66 @@
+Project Name: Feedback-Monkey
+
+1) App Overview:
+    -> Customer 'O' (Owner of a particular company or a product owner) wants feedback about product/company.
+    -> 'O' wants to send his customers an email requesting feedback.
+    -> Get tabulation of the results.
+    -> Improve the performance based on the feedback.
+
+
+2) App User Flow and Tech Stack:
+    -> User signs up via Google OAuth ( Express Server + Mongo DB + Passport JS )
+    -> User pays for email credits using stripe ( Stripe + Mongo DB )
+    -> User creates a new 'campaign' ( React + Redux )
+    -> User enters the list of emails to send survey to ( React + Redux + Redux Form )
+    -> We send the email to the list of respondents ( Email Provider )
+    -> Respondents click on the link in email to provide feedback ( Email Provider + Express JS + Mongo DB )
+    -> We tabulate feedback ( Mongo DB + Scope for data visualization )
+    -> User can see report of all survey responses ( Mongo DB + React + Redux )
+
+
+3) Overall Architecture:
+    -> When user hits the website, we send them back a HTML document and Javascript File that contains React Application
+    -> Data being shown in React Application is recorded and stored in Mongo Database.
+    -> Data in the database communicates with the React Application effectively using the Express JS.
+    -> Express JS takes incoming requests from React Application, pull data from the Mongo DB and sends the information
+back to the React Application to show some content.
+
+                         React -> HTTP Request (JSON) -> Express/Node API -> Mongo DB
+
+
+4) Node vs Express:
+    -> Node is a JS runtime used to execute code outside of the browser.
+    -> Express is a library that runs in Node runtime. Has helpers to make dealing with HTTP traffic easier.
+
+Incoming HTTP request -> Port on Machine -> Node -> Express -> Route Handling -> Response -> Express -> Node -> Port on Machine -> HTTP Response
+(Express looks at the request and decides what chunk of code will "handle" or respond to the request.)
+
+
+5) OAuth Flow:
+    -> Client sends the request to server when user clicks 'Login'.
+    -> Server redirects request to Google, by creating a route to handle this request.
+    -> If user grants permission, Google sends a response to the server with some 'code'.
+    -> Server retrieves the code from the response and send the request to the Google along with the 'code'.
+    -> Google validates the code and returns the details of the user to the server.
+    -> Server collects the data of the user sent by Google and creates a database record.
+    -> Server sets the user ID in cookie and sends the user back to the client.
+    -> For further requests made from client to server, server uses cookies to authenticate the user.
+    -> Server handles the request and sends back the response to the client.
+
+    Passport JS:
+        -> It automates most of the OAuth flow between server and Google.
+        -> This helps us avoid boiler plate code.
+        -> Passport Strategy helps authenticating with one specific method (email/password, Google, Facebook etc)
+
+
+6) Adding Mongo DB:
+    -> Server validates the user and creates a new user record in Mongo DB, if it is a new user.
+    -> Server sets a cookie for the user with a unique ID and sends the response back to the client.
+    -> When user logs out, cookie is unset.
+
+    Mongoose JS and Mongo DB:
+        -> We use mongoose JS to create a new collection in Mongo DB called 'users'.
+        -> In JS world, Model class contains Model Instances similar to how collection contains records in Mongo DB.
+        -> The conversion of collection to Model Class, records to Model Instance is done by Mongoose JS.
+        -> Every record in a collection can have random arbitrary properties. However, when we use mongoose this ability is removed.
+        -> We have to declare all of the properties we might have while creating the Model Class.
