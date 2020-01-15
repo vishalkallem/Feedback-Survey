@@ -64,3 +64,7 @@ Incoming HTTP request -> Port on Machine -> Node -> Express -> Route Handling ->
         -> The conversion of collection to Model Class, records to Model Instance is done by Mongoose JS.
         -> Every record in a collection can have random arbitrary properties. However, when we use mongoose this ability is removed.
         -> We have to declare all of the properties we might have while creating the Model Class.
+
+    Queries in Mongo DB:
+        -> findOne(record) - Checks whether the user record already exists in the database.
+        -> Query returns a promise.
