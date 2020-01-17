@@ -25,6 +25,7 @@ app.use(passport.session(null));
 require("../routes/authRoutes")(app);
 
 const PORT = 5000 || process.env.PORT;
-app.listen(PORT, () => {
+const HOST = "0.0.0.0";
+app.listen(PORT, HOST, () => {
   console.log(`Our app is running on port ${PORT}`);
 });
