@@ -78,3 +78,16 @@ Incoming HTTP request -> Port on Machine -> Node -> Express -> Route Handling ->
     -> We create a new route handler to validate req.user in the request.
 
             request from browser -> app -> middleware #1 -> middleware #2 -> route handler -> response
+
+
+9) React Application:
+
+    Separate front-end server:
+    -> React server serves the front-end of the application and the express server serves the back-end of the application.
+    -> Express server pulls information from Mongo DB and responds to requests made by browser in json format.
+    -> React server bundles together a bunch of different component files and loads bundle.js into the browser.
+    -> Create-react-app is the best way to create a react app compared to other methods. Hence, it's worth to run react a different server.
+
+    Running the client and server:
+    -> Use --prefix to select the folder to run the script
+    -> Use concurrently to run two commands at once.

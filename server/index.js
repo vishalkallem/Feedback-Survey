@@ -6,10 +6,16 @@ const keys = require("../config/keys");
 require("../models/user");
 require("../services/passport");
 
-mongoose.connect(keys.mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose
+  .connect(keys.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(err => {
+    console.log(
+      `Error occurred while connecting to mongo db server. Error: ${err}`
+    );
+  });
 
 const app = express();
 
@@ -24,7 +30,7 @@ app.use(passport.session(null));
 
 require("../routes/authRoutes")(app);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Our app is running on port ${PORT}`);
 });
